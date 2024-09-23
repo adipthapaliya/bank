@@ -1,0 +1,50 @@
+{% extends 'admin/adminindex.html'%}
+
+{% block title %}KKR BANK || USER DETAILS {% endblock %} 
+
+{% load static %}
+
+{% block css %} {% endblock %}
+
+{% block content %}
+
+<main>
+    <h1>User List</h1>
+    <table >
+        <tr>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <th></th>
+            
+        </tr>
+
+        {% for users in user %}
+
+        {% if users.is_superuser %}
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        {% else %}
+
+        
+
+        <tr>
+            <td>{{ users.first_name }}</td>
+            <td>{{ users.username }}</td>
+            <td>{{ users.email }}</td>
+            <td><a href="/admin/delete_user/{{users.id}}" class="btn btn-danger">Delete</a></td>
+            
+        </tr>
+
+        {% endif %}
+
+        {% endfor %}
+    </table>
+</main>
+{% endblock %}
