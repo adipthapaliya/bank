@@ -28,5 +28,8 @@ urlpatterns = [
     path('user/login/loginUser',views.login_user),
     path('user/logout',views.log_out),
     path('contact', views.contact),
+    path('loan', views.loan),
+    path('addloan', views.addloan),
+
 
 ]

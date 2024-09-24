@@ -1,0 +1,105 @@
+{% extends 'index.html'%}
+
+{% block title %}KKR BANK || USER DETAILS {% endblock %} 
+
+{% load static %}
+
+{% block css %} <link rel="stylesheet" href="{% static 'css/loan.css' %}"> {% endblock %}
+
+{% block content %}
+
+<main>
+    <div class="container">
+        <h2>Loan Prediction Form</h2>
+        <form action="/addloan" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" class="form-select">
+                        <option selected disabled value="">--SELECT--</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="married">Married</label>
+                    <select id="married" name="married" class="form-select">
+                        <option disabled selected value="">--SELECT--</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dependents">Dependents</label>
+                    <input type="number" id="dependents" name="dependent" >
+                </div>
+
+                <div class="form-group">
+                    <label for="education">Education</label>
+                    <select id="education" name="education">
+                        <option selected disabled value="">--SELECT--</option>
+                        <option value="graduate">Graduate</option>
+                        <option value="not_graduate">Not Graduate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="self_employed">Self Employed</label>
+                    <select id="self_employed" name="employed">
+                        <option disabled selected value="">--SELECT--</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="applicantIncome">Applicant Income</label>
+                    <input type="number" id="applicantIncome" name="income">
+                </div>
+
+                <div class="form-group">
+                    <label for="coapplicantIncome">Coapplicant Income</label>
+                    <input type="number" id="coapplicantIncome" name="coapplicantIncome" >
+                </div>
+
+                <div class="form-group">
+                    <label for="loanAmount">Loan Amount</label>
+                    <input type="number" id="loanAmount" name="loanAmount" >
+                </div>
+
+                <div class="form-group">
+                    <label for="loanAmountTerm">Loan Amount Term</label>
+                    <input type="number" id="loanAmountTerm" name="loanAmountTerm" >
+                </div>
+
+                <div class="form-group">
+                    <label for="creditHistory">Credit History</label>
+                    <input type="number" id="creditHistory" name="creditHistory" >
+                </div>
+
+                <div class="form-group">
+                    <label for="propertyArea">Property Area</label>
+                    <select id="propertyArea" name="property">
+                        <option disabled selected value="">--SELECT--</option>
+                        <option value="urban">Urban</option>
+                        <option value="semiurban">Semiurban</option>
+                        <option value="rural">Rural</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Predict Loan</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</main>
+
+{% endblock %}

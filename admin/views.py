@@ -48,7 +48,7 @@ def log_out(request):
 
 @login_required(login_url='/admin')
 def details(request):
-    user=User.objects.all()
+    user=User.objects.all() 
     return render(request,'admin/admindetails.html',{'user':user})
 
 @login_required(login_url='/admin')
