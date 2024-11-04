@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login as log
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from user.form import LoanForm
 
@@ -35,13 +36,19 @@ def login_user(request):
                 return redirect('/home')
 
             else:
+                messages.error(request,"Username and Password Don't Match, Please Try Again !")
+
                 return redirect("/user/login")
 
 
         else:
+            messages.error(request,"Username and Password Don't Match, Please Try Again !")
+
             return redirect("/user/login")
 
     else:
+            messages.error(request,"Something is worng with your form validation, Please Try Again !")
+
             return redirect("/user/login")
 
 
@@ -82,28 +89,34 @@ def loan(request):
 
 @login_required(login_url='/user/login')
 
-def addloan(request):
+def addloan(request,uid):
 
 
     if request.method == 'POST':
         # Create a new LoanModel instance with the submitted data
         loan_instance = LoanForm(
-            gender=request.POST.get('gender'),
-            married=request.POST.get('married'),
-            dependent=request.POST.get('dependent'),
-            education=request.POST.get('education'),
-            employment=request.POST.get('employment'),  # Make sure this field matches your model
-            income=request.POST.get('income'),
-            co_income=request.POST.get('co_income'),
-            loan=request.POST.get('loan'),
-            loan_term=request.POST.get('loan_term'),
-            credit=request.POST.get('credit'),
-            property_area=request.POST.get('property_area'),
-            user_id=request.user  # Assuming you're associating the loan with the logged-in user
+            request.POST
         )
-        loan_instance.save() 
-   
+
+        if loan_instance.is_valid():
+            loan_instance.save()
+        # # else:
+        # #     print(loan_instance.errors)
+
+
     return redirect('/index')
 
+
+# def addloan(request):
+#     if request.method == 'POST':
+#         form = LoanForm(request.POST)
+#         if form.is_valid():
+#             loan_instance = form.save(commit=False)
+#             loan_instance.user_id = request.user
+#             loan_instance.save()
+#             return redirect('/index')
+#     else:
+#         form = LoanForm()
+#     return render(request, 'loan.html', {'form': form})
 
 

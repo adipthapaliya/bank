@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -7,6 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login as log
 from django.contrib.auth import logout
+from django.contrib import messages
+
+from user.models import LoanModel
 
 
 
@@ -37,9 +39,13 @@ def login_superuser(request):
                 return redirect('/admin/home')
 
             else:
-                return redirect('/admin')
+                messages.error(request,"Username and Password Don't Match, Please Try Again !")
+
+                return redirect('/admin/login')
 
         else:
+            messages.error(request,"Username and Password Don't Match, Please Try Again !")
+           
             return redirect('/admin')
     
 def log_out(request):
@@ -57,3 +63,9 @@ def delete_user(request,id):
     user.delete()
     user=User.objects.all()
     return render(request,'admin/admindetails.html',{'user':user})
+
+
+def loan(request):
+    loans=LoanModel.objects.all()
+    user=User.objects.all()
+    return render(request,'admin/loan.html',{'loans':loans,'user':user})

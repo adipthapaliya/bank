@@ -29,19 +29,21 @@ class LoanModel(models.Model):
     married = models.CharField(max_length=3, choices=MARRIED_CHOICES)
     dependent = models.PositiveIntegerField()
     education = models.CharField(max_length=20, choices=EDUCATION_CHOICES)
-    property= models.CharField(max_length=20, choices=SELF_EMPLOYED)
+    self_employed= models.CharField(max_length=20, choices=SELF_EMPLOYED)
     income = models.PositiveIntegerField()
     co_income = models.PositiveIntegerField()
     loan = models.PositiveIntegerField()
     loan_term = models.PositiveIntegerField()
     credit = models.PositiveIntegerField()
-    property= models.CharField(max_length=20, choices=PROPERTY_AREA_CHOICES)
+    property_area= models.CharField(max_length=20, choices=PROPERTY_AREA_CHOICES)
       # Make sure this field is defined correctly
 
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'loan'
+
+
 
 
 

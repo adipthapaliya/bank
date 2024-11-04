@@ -11,13 +11,13 @@
 <main>
     <div class="container">
         <h2>Loan Prediction Form</h2>
-        <form action="/addloan" method="post" enctype="multipart/form-data">
+        <form action="/addloan/{{user.id}}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="form-grid">
                 <div class="form-group">
                     <label for="gender">Gender</label>
-                    <select id="gender" name="gender" class="form-select">
+                    <select id="gender" name="gender" class="form-select" required>
                         <option selected disabled value="">--SELECT--</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="married">Married</label>
-                    <select id="married" name="married" class="form-select">
+                    <select id="married" name="married" class="form-select" required>
                         <option disabled selected value="">--SELECT--</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -34,13 +34,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dependents">Dependents</label>
-                    <input type="number" id="dependents" name="dependent" >
+                    <label for="dependent">Dependents</label>
+                    <input type="number" id="dependent" name="dependent" required>
                 </div>
 
                 <div class="form-group">
                     <label for="education">Education</label>
-                    <select id="education" name="education">
+                    <select id="education" name="education" required>
                         <option selected disabled value="">--SELECT--</option>
                         <option value="graduate">Graduate</option>
                         <option value="not_graduate">Not Graduate</option>
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                     <label for="self_employed">Self Employed</label>
-                    <select id="self_employed" name="employed">
+                    <select id="self_employed" name="self_employed" required>
                         <option disabled selected value="">--SELECT--</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -57,38 +57,42 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="applicantIncome">Applicant Income</label>
-                    <input type="number" id="applicantIncome" name="income">
+                    <label for="income">Applicant Income</label>
+                    <input type="number" id="income" name="income" required>
                 </div>
 
                 <div class="form-group">
                     <label for="coapplicantIncome">Coapplicant Income</label>
-                    <input type="number" id="coapplicantIncome" name="coapplicantIncome" >
+                    <input type="number" id="co_income" name="co_income" required>
                 </div>
 
                 <div class="form-group">
                     <label for="loanAmount">Loan Amount</label>
-                    <input type="number" id="loanAmount" name="loanAmount" >
+                    <input type="number" id="loan" name="loan" required>
                 </div>
 
                 <div class="form-group">
                     <label for="loanAmountTerm">Loan Amount Term</label>
-                    <input type="number" id="loanAmountTerm" name="loanAmountTerm" >
+                    <input type="number" id="loan_term" name="loan_term" required>
                 </div>
 
                 <div class="form-group">
                     <label for="creditHistory">Credit History</label>
-                    <input type="number" id="creditHistory" name="creditHistory" >
+                    <input type="number" id="credit" name="credit" required>
                 </div>
 
                 <div class="form-group">
                     <label for="propertyArea">Property Area</label>
-                    <select id="propertyArea" name="property">
+                    <select id="property_area" name="property_area" required>
                         <option disabled selected value="">--SELECT--</option>
                         <option value="urban">Urban</option>
                         <option value="semiurban">Semiurban</option>
                         <option value="rural">Rural</option>
                     </select>
+                </div>
+
+                <div class="user-id">
+                    <input type="hidden"  value='{{user.id}}' class="field left" id="user_id" name="user_id" readonly>
                 </div>
             </div>
 

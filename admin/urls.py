@@ -29,7 +29,7 @@ urlpatterns = [
     path('delete_user/<int:id>',views.delete_user),
 
 
-
+    path('loan',views.loan),
 
 
 

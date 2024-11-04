@@ -29,7 +29,7 @@ urlpatterns = [
     path('user/logout',views.log_out),
     path('contact', views.contact),
     path('loan', views.loan),
-    path('addloan', views.addloan),
+    path('addloan/<int:uid>', views.addloan),
 
 
 ]
